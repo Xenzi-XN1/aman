@@ -1,21 +1,27 @@
 {
   "version": 2,
-  "functions": {
-    "api/index.py": {
-      "runtime": "python3.11"
+  "builds": [
+    {
+      "src": "api/index.py",
+      "use": "@vercel/python",
+      "config": { "runtime": "python3.11" }
+    },
+    {
+      "src": "create.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "**/*.(jpg|png|css|js|ico|svg|webp|gif)",
+      "use": "@vercel/static"
     }
-  },
+  ],
   "routes": [
     {
       "src": "/api/(.*)",
       "dest": "/api/index.py"
     },
     {
-      "src": "/create",
-      "dest": "/create.html"
-    },
-    {
-      "src": "/",
+      "src": "/(.*)",
       "dest": "/create.html"
     }
   ]
