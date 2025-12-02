@@ -8,6 +8,17 @@
     }
   },
   "routes": [
-    { "src": "/api/(.*)", "dest": "/api/index.py" }
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/index.py"
+    },
+    {
+      "src": "/create",
+      "dest": "/create.html"
+    },
+    {
+      "src": "/",
+      "dest": "/create.html"
+    }
   ]
 }
