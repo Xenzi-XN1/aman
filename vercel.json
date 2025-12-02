@@ -2,9 +2,7 @@
   "version": 2,
   "functions": {
     "api/index.py": {
-      "runtime": "python3.11",
-      "maxDuration": 10,
-      "memory": 256
+      "runtime": "python3.11"
     }
   },
   "routes": [
