@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create CAPTCHA Challenge</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    .json-box {
+      white-space: pre-wrap;
+      word-break: break-all;
+      font-family: ui-monospace, monospace;
+    }
+  </style>
+</head>
+
+<body class="bg-gradient-to-br from-gray-100 to-gray-200 min-h-screen flex items-center justify-center p-4">
+
+  <div class="w-full max-w-xl bg-white/80 backdrop-blur-xl shadow-xl rounded-2xl p-8 border border-white/30">
+
+    <div class="text-center">
+      <h1 class="text-2xl font-bold text-gray-800">
+        Create CAPTCHA Challenge
+      </h1>
+      <p class="text-gray-600 mt-1 text-sm">
+        Menghasilkan challenge_id baru dari backend API.
+      </p>
+    </div>
+
+    <!-- BUTTON -->
+    <button id="createBtn"
+      class="w-full mt-6 px-5 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl shadow-md font-semibold transition duration-150 active:scale-95">
+      Generate Challenge
+    </button>
+
+    <!-- Output box -->
+    <div class="mt-6 bg-gray-900 text-green-300 p-5 rounded-xl shadow-lg json-box text-sm" id="output">
+      { menunggu... }
+    </div>
+
+    <!-- Info small -->
+    <p class="text-center mt-4 text-xs text-gray-500">
+      Endpoint: <span class="font-mono text-gray-700">POST /api/captcha/create</span>
+    </p>
+
+  </div>
+
+<script>
+async function generate() {
+  const output = document.getElementById("output");
+  output.textContent = "{ loading... }";
+
+  try {
+    const res = await fetch("/api/captcha/create", { method: "POST" });
+    const data = await res.json();
+
+    output.textContent = JSON.stringify(data, null, 2);
+
+  } catch (err) {
+    output.textContent = "{ error: \"Gagal memanggil API\" }";
+  }
+}
+
+document.getElementById("createBtn").onclick = generate;
+
+// Auto-generate on load
+generate();
+</script>
+
+</body>
+  </html>
