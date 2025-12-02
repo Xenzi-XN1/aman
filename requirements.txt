@@ -1,0 +1,2 @@
+Flask==3.0.3
+vercel-wsgi==0.8.0
